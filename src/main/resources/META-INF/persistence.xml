@@ -17,7 +17,7 @@
         <class>com.warpg.model.InventoryItem</class>
         <class>com.warpg.model.EquippedItem</class>
         <class>com.warpg.model.Monster</class>
-        <class>com.warpg.model.MonsterLoot</class>
+        <!-- <class>com.warpg.model.MonsterLoot</class> -->
         <class>com.warpg.model.Quest</class>
         <class>com.warpg.model.PlayerQuest</class>
         <class>com.warpg.model.Achievement</class>
@@ -32,10 +32,12 @@
             
             <!-- Hibernate properties -->
             <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
-            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <property name="hibernate.hbm2ddl.auto" value="create"/>
             <property name="hibernate.show_sql" value="false"/>
             <property name="hibernate.format_sql" value="true"/>
             <property name="hibernate.use_sql_comments" value="true"/>
+            <property name="hibernate.globally_quoted_identifiers" value="false"/>
+            <property name="hibernate.globally_quoted_identifiers_skip_column_definitions" value="true"/>
             
             <!-- Connection pool -->
             <property name="hibernate.c3p0.min_size" value="5"/>

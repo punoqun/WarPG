@@ -34,8 +34,9 @@ public class Monster {
     
     private int spawnChance = 100; // Out of 10000
     
-    @OneToMany(mappedBy = "monster", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<MonsterLoot> lootTable = new ArrayList<>();
+    // Loot table removed temporarily to avoid circular reference issues
+    // @OneToMany(mappedBy = "monster", cascade = CascadeType.ALL, orphanRemoval = true)
+    // private List<MonsterLoot> lootTable = new ArrayList<>();
     
     public Monster() {}
     
@@ -114,6 +115,6 @@ public class Monster {
     public int getSpawnChance() { return spawnChance; }
     public void setSpawnChance(int spawnChance) { this.spawnChance = spawnChance; }
     
-    public List<MonsterLoot> getLootTable() { return lootTable; }
-    public void setLootTable(List<MonsterLoot> lootTable) { this.lootTable = lootTable; }
+    // public List<MonsterLoot> getLootTable() { return lootTable; }
+    // public void setLootTable(List<MonsterLoot> lootTable) { this.lootTable = lootTable; }
 }

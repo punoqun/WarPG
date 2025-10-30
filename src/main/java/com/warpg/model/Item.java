@@ -29,6 +29,7 @@ public abstract class Item {
     @Column(nullable = false)
     private ItemType itemType;
     
+    @Column(name = "item_value")
     private int value; // Gold value
     private int levelRequirement = 1;
     private int dropChance = 100; // Out of 10000
