@@ -48,7 +48,7 @@ WarPG has been completely rewritten from scratch to address critical security vu
 
 ### Security Improvements
 ```
-Before: 2+ Critical + 1+ High vulnerabilities
+Before: 3 Critical vulnerabilities (SQL injection, exposed credentials, plain text passwords)
 After:  0 Vulnerabilities (CodeQL verified)
 ```
 

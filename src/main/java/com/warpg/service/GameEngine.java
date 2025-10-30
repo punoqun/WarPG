@@ -1,6 +1,7 @@
 package com.warpg.service;
 
 import com.warpg.dao.MonsterDAO;
+import com.warpg.dao.ZoneDAO;
 import com.warpg.model.*;
 import java.util.Random;
 
@@ -12,17 +13,21 @@ public class GameEngine {
     private final PlayerService playerService;
     private final CombatService combatService;
     private final MonsterDAO monsterDAO;
+    private final ZoneDAO zoneDAO;
     private final Random random;
     
     private Player currentPlayer;
     private GameMap currentMap;
+    private Zone currentZone;
     
     public GameEngine() {
         this.playerService = new PlayerService();
         this.combatService = new CombatService();
         this.monsterDAO = new MonsterDAO();
+        this.zoneDAO = new ZoneDAO();
         this.random = new Random();
         this.currentMap = new GameMap();
+        this.currentZone = zoneDAO.getOrCreateZone(1);
     }
     
     /**
@@ -50,6 +55,16 @@ public class GameEngine {
      */
     public Player getCurrentPlayer() {
         return currentPlayer;
+    }
+    
+    /**
+     * Get current zone
+     */
+    public Zone getCurrentZone() {
+        if (currentZone == null && currentPlayer != null) {
+            currentZone = zoneDAO.getOrCreateZone(currentPlayer.getZoneId());
+        }
+        return currentZone;
     }
     
     /**
@@ -105,10 +120,12 @@ public class GameEngine {
         currentPlayer.setPosX(GameMap.MAP_SIZE / 2);
         currentPlayer.setPosY(GameMap.MAP_SIZE / 2);
         currentMap = new GameMap();
+        currentZone = zoneDAO.getOrCreateZone(currentPlayer.getZoneId());
         
         MoveResult result = new MoveResult();
         result.setEventType(EventType.ZONE_CHANGE);
-        result.setMessage("You've entered a new zone! Zone " + currentPlayer.getZoneId());
+        result.setMessage("You've entered " + currentZone.getDisplayName() + "!\n" + 
+                         currentZone.getZoneType().getDescription());
         return result;
     }
     
@@ -122,11 +139,19 @@ public class GameEngine {
                 result.setMessage("Nothing here...");
                 break;
             case 1: // Monster
-                Monster monster = monsterDAO.getRandomMonster(currentPlayer.getLevel());
+                // Get zone-specific monster
+                Monster monster = monsterDAO.getRandomMonsterForZone(
+                    currentZone.getZoneType(), currentPlayer.getLevel());
                 if (monster != null) {
+                    monster.resetHealth(); // Reset health for fresh encounter
                     result.setEventType(EventType.COMBAT);
                     result.setMonster(monster);
-                    result.setMessage("A " + monster.getName() + " appears!");
+                    
+                    String encounterMsg = "A " + monster.getName() + " appears!";
+                    if (monster.getWeakness() != null) {
+                        encounterMsg += "\n[Weak to: " + monster.getWeakness().getDisplayName() + "]";
+                    }
+                    result.setMessage(encounterMsg);
                     currentMap.clearTile(x, y);
                 }
                 break;

@@ -3,6 +3,8 @@ package com.warpg;
 import com.warpg.model.CharacterClass;
 import com.warpg.model.Monster;
 import com.warpg.model.Player;
+import com.warpg.model.Zone;
+import com.warpg.model.ZoneType;
 import com.warpg.service.CombatService;
 import com.warpg.service.GameEngine;
 import com.warpg.util.DatabaseManager;
@@ -224,8 +226,20 @@ public class Main {
             " | MP: " + player.getMana() + "/" + player.getMaxMana());
         System.out.println("Gold: " + player.getGold() + " | XP: " + 
             player.getExperience() + "/" + player.getExperienceToNextLevel());
-        System.out.println("Position: Zone " + player.getZoneId() + 
-            " (" + player.getPosX() + ", " + player.getPosY() + ")");
+        
+        // Display zone info with color
+        Zone currentZone = gameEngine.getCurrentZone();
+        if (currentZone != null) {
+            String zoneColor = currentZone.getZoneType().getAnsiColor();
+            String reset = ZoneType.getResetCode();
+            System.out.println("Location: " + zoneColor + currentZone.getZoneType().getEmoji() + 
+                " " + currentZone.getDisplayName() + reset + 
+                " (" + player.getPosX() + ", " + player.getPosY() + ")");
+            System.out.println("  " + zoneColor + currentZone.getZoneType().getDescription() + reset);
+        } else {
+            System.out.println("Position: Zone " + player.getZoneId() + 
+                " (" + player.getPosX() + ", " + player.getPosY() + ")");
+        }
     }
     
     private static void displayDetailedStats(Player player) {

@@ -22,6 +22,7 @@
         <class>com.warpg.model.PlayerQuest</class>
         <class>com.warpg.model.Achievement</class>
         <class>com.warpg.model.PlayerAchievement</class>
+        <class>com.warpg.model.Zone</class>
         
         <properties>
             <!-- H2 Database configuration -->

@@ -34,6 +34,17 @@ public class Monster {
     
     private int spawnChance = 100; // Out of 10000
     
+    @Enumerated(EnumType.STRING)
+    private ZoneType preferredZone; // Zone where this monster commonly appears
+    
+    @Enumerated(EnumType.STRING)
+    private ElementType weakness; // Element this monster is weak to (150% damage)
+    
+    @Enumerated(EnumType.STRING)
+    private ElementType resistance; // Element this monster resists (50% damage)
+    
+    private int specialDropRate = 0; // Chance out of 100 for special drops
+    
     // Loot table removed temporarily to avoid circular reference issues
     // @OneToMany(mappedBy = "monster", cascade = CascadeType.ALL, orphanRemoval = true)
     // private List<MonsterLoot> lootTable = new ArrayList<>();
@@ -114,6 +125,18 @@ public class Monster {
     
     public int getSpawnChance() { return spawnChance; }
     public void setSpawnChance(int spawnChance) { this.spawnChance = spawnChance; }
+    
+    public ZoneType getPreferredZone() { return preferredZone; }
+    public void setPreferredZone(ZoneType preferredZone) { this.preferredZone = preferredZone; }
+    
+    public ElementType getWeakness() { return weakness; }
+    public void setWeakness(ElementType weakness) { this.weakness = weakness; }
+    
+    public ElementType getResistance() { return resistance; }
+    public void setResistance(ElementType resistance) { this.resistance = resistance; }
+    
+    public int getSpecialDropRate() { return specialDropRate; }
+    public void setSpecialDropRate(int specialDropRate) { this.specialDropRate = specialDropRate; }
     
     // public List<MonsterLoot> getLootTable() { return lootTable; }
     // public void setLootTable(List<MonsterLoot> lootTable) { this.lootTable = lootTable; }
