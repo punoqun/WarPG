@@ -44,9 +44,40 @@ public class ZoneDAO extends GenericDAO<Zone, Long> {
     }
     
     private ZoneType determineZoneType(int zoneNumber) {
-        ZoneType[] types = ZoneType.values();
-        // Cycle through zone types, with some logic
-        int index = (zoneNumber - 1) % types.length;
-        return types[index];
+        // Progressive difficulty: easier zones first, harder zones later
+        // Also creates geographic variety and logical progression
+        
+        if (zoneNumber <= 2) {
+            return ZoneType.GRASSLAND; // Starting area
+        } else if (zoneNumber <= 4) {
+            return zoneNumber % 2 == 0 ? ZoneType.FOREST : ZoneType.GRASSLAND;
+        } else if (zoneNumber <= 6) {
+            return zoneNumber % 2 == 0 ? ZoneType.DESERT : ZoneType.SWAMP;
+        } else if (zoneNumber <= 8) {
+            return zoneNumber % 2 == 0 ? ZoneType.MOUNTAIN : ZoneType.CAVE;
+        } else if (zoneNumber <= 10) {
+            return zoneNumber % 2 == 0 ? ZoneType.TUNDRA : ZoneType.RUINS;
+        } else if (zoneNumber <= 15) {
+            // Mid-game variety
+            int mod = zoneNumber % 5;
+            switch (mod) {
+                case 0: return ZoneType.VOLCANO;
+                case 1: return ZoneType.FOREST;
+                case 2: return ZoneType.MOUNTAIN;
+                case 3: return ZoneType.SWAMP;
+                case 4: return ZoneType.CAVE;
+                default: return ZoneType.RUINS;
+            }
+        } else {
+            // End-game: dangerous zones more common
+            int mod = zoneNumber % 4;
+            switch (mod) {
+                case 0: return ZoneType.DUNGEON;
+                case 1: return ZoneType.VOLCANO;
+                case 2: return ZoneType.RUINS;
+                case 3: return ZoneType.DUNGEON;
+                default: return ZoneType.DUNGEON;
+            }
+        }
     }
 }

@@ -139,11 +139,20 @@ public class GameEngine {
                 result.setMessage("Nothing here...");
                 break;
             case 1: // Monster
-                // Get zone-specific monster
-                Monster monster = monsterDAO.getRandomMonsterForZone(
+                // Get zone-specific monster template
+                Monster template = monsterDAO.getRandomMonsterForZone(
                     currentZone.getZoneType(), currentPlayer.getLevel());
-                if (monster != null) {
-                    monster.resetHealth(); // Reset health for fresh encounter
+                if (template != null) {
+                    // Create a fresh instance for this encounter (not from database)
+                    Monster monster = new Monster(template.getName(), template.getLevel());
+                    monster.setDescription(template.getDescription());
+                    monster.setPreferredZone(template.getPreferredZone());
+                    monster.setWeakness(template.getWeakness());
+                    monster.setResistance(template.getResistance());
+                    monster.setExperienceReward(template.getExperienceReward());
+                    monster.setGoldReward(template.getGoldReward());
+                    monster.setSpecialDropRate(template.getSpecialDropRate());
+                    
                     result.setEventType(EventType.COMBAT);
                     result.setMonster(monster);
                     

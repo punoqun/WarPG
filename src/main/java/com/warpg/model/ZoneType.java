@@ -49,7 +49,7 @@ public enum ZoneType {
     public String getAnsiColor() {
         switch (this) {
             case GRASSLAND: return "\u001B[32m"; // Green
-            case FOREST: return "\u001B[32;2m"; // Dark Green
+            case FOREST: return "\u001B[92m"; // Bright Green (distinct from swamp)
             case DESERT: return "\u001B[33m"; // Yellow
             case SWAMP: return "\u001B[32;2m"; // Dark Green
             case MOUNTAIN: return "\u001B[37m"; // White/Gray

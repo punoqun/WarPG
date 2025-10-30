@@ -17,6 +17,14 @@ public class DataSeeder {
         seedAchievements();
     }
     
+    // Drop rate constants for better maintainability
+    private static final int DROP_RATE_COMMON = 10;
+    private static final int DROP_RATE_UNCOMMON = 15;
+    private static final int DROP_RATE_RARE = 20;
+    private static final int DROP_RATE_EPIC = 30;
+    private static final int DROP_RATE_LEGENDARY = 40;
+    private static final int DROP_RATE_MYTHIC = 50;
+    
     private static void seedMonsters() {
         MonsterDAO monsterDAO = new MonsterDAO();
         
@@ -31,7 +39,7 @@ public class DataSeeder {
         goblin.setPreferredZone(ZoneType.GRASSLAND);
         goblin.setWeakness(ElementType.FIRE);
         goblin.setResistance(ElementType.NATURE);
-        goblin.setSpecialDropRate(10);
+        goblin.setSpecialDropRate(DROP_RATE_COMMON);
         monsterDAO.save(goblin);
         
         Monster wolf = new Monster("Wolf", 2);
@@ -47,7 +55,7 @@ public class DataSeeder {
         treant.setPreferredZone(ZoneType.FOREST);
         treant.setWeakness(ElementType.FIRE);
         treant.setResistance(ElementType.NATURE);
-        treant.setSpecialDropRate(15);
+        treant.setSpecialDropRate(DROP_RATE_UNCOMMON);
         monsterDAO.save(treant);
         
         Monster darkElf = new Monster("Dark Elf", 4);
@@ -63,7 +71,7 @@ public class DataSeeder {
         scorpion.setPreferredZone(ZoneType.DESERT);
         scorpion.setWeakness(ElementType.ICE);
         scorpion.setResistance(ElementType.FIRE);
-        scorpion.setSpecialDropRate(20);
+        scorpion.setSpecialDropRate(DROP_RATE_RARE);
         monsterDAO.save(scorpion);
         
         Monster sandWorm = new Monster("Sand Worm", 5);
@@ -86,7 +94,7 @@ public class DataSeeder {
         swampTroll.setPreferredZone(ZoneType.SWAMP);
         swampTroll.setWeakness(ElementType.FIRE);
         swampTroll.setResistance(ElementType.POISON);
-        swampTroll.setSpecialDropRate(25);
+        swampTroll.setSpecialDropRate(DROP_RATE_RARE);
         monsterDAO.save(swampTroll);
         
         // MOUNTAIN monsters
@@ -95,7 +103,7 @@ public class DataSeeder {
         griffin.setPreferredZone(ZoneType.MOUNTAIN);
         griffin.setWeakness(ElementType.LIGHTNING);
         griffin.setResistance(ElementType.PHYSICAL);
-        griffin.setSpecialDropRate(30);
+        griffin.setSpecialDropRate(DROP_RATE_EPIC);
         monsterDAO.save(griffin);
         
         Monster stoneGolem = new Monster("Stone Golem", 7);
@@ -118,7 +126,7 @@ public class DataSeeder {
         frostGiant.setPreferredZone(ZoneType.TUNDRA);
         frostGiant.setWeakness(ElementType.FIRE);
         frostGiant.setResistance(ElementType.ICE);
-        frostGiant.setSpecialDropRate(35);
+        frostGiant.setSpecialDropRate(DROP_RATE_EPIC);
         monsterDAO.save(frostGiant);
         
         // VOLCANO monsters
@@ -134,7 +142,7 @@ public class DataSeeder {
         fireDrake.setPreferredZone(ZoneType.VOLCANO);
         fireDrake.setWeakness(ElementType.ICE);
         fireDrake.setResistance(ElementType.FIRE);
-        fireDrake.setSpecialDropRate(40);
+        fireDrake.setSpecialDropRate(DROP_RATE_LEGENDARY);
         monsterDAO.save(fireDrake);
         
         // CAVE monsters
@@ -165,7 +173,7 @@ public class DataSeeder {
         wraith.setPreferredZone(ZoneType.RUINS);
         wraith.setWeakness(ElementType.HOLY);
         wraith.setResistance(ElementType.DARK);
-        wraith.setSpecialDropRate(30);
+        wraith.setSpecialDropRate(DROP_RATE_EPIC);
         monsterDAO.save(wraith);
         
         // DUNGEON monsters (high level)
@@ -174,7 +182,7 @@ public class DataSeeder {
         demon.setPreferredZone(ZoneType.DUNGEON);
         demon.setWeakness(ElementType.HOLY);
         demon.setResistance(ElementType.DARK);
-        demon.setSpecialDropRate(45);
+        demon.setSpecialDropRate(DROP_RATE_LEGENDARY);
         monsterDAO.save(demon);
         
         Monster dragon = new Monster("Ancient Dragon", 10);
@@ -184,7 +192,7 @@ public class DataSeeder {
         dragon.setResistance(ElementType.FIRE);
         dragon.setGoldReward(500);
         dragon.setExperienceReward(1000);
-        dragon.setSpecialDropRate(50);
+        dragon.setSpecialDropRate(DROP_RATE_MYTHIC);
         monsterDAO.save(dragon);
         
         System.out.println("Seeded " + monsterDAO.count() + " monsters across all zones");
