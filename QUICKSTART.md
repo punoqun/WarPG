@@ -292,10 +292,10 @@ Each level up: +1 to all base attributes
 ## Getting Help
 
 ### Documentation
-- `README_NEW.md` - Overview and features
+- `README.md` - Project overview and features
 - `ARCHITECTURE.md` - Technical details
 - `SECURITY.md` - Security information
-- `MIGRATION_GUIDE.md` - Upgrading from v1.x
+- `ZONES.md` - Zone system guide
 
 ### Community
 - GitHub Issues: Report bugs
@@ -347,4 +347,4 @@ Explore the world, fight monsters, level up your character, and become a legend!
 For more information, see the full documentation:
 - Technical: `ARCHITECTURE.md`
 - Security: `SECURITY.md`
-- Migration: `MIGRATION_GUIDE.md`
+- Zones: `ZONES.md`

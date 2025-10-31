@@ -43,10 +43,9 @@ See [QUICKSTART.md](QUICKSTART.md) for detailed instructions.
 ## 📚 Documentation
 
 - **[QUICKSTART.md](QUICKSTART.md)** - Get started in 5 minutes
-- **[README_NEW.md](README_NEW.md)** - Detailed feature list and comparison
 - **[ARCHITECTURE.md](ARCHITECTURE.md)** - Technical architecture and design
 - **[SECURITY.md](SECURITY.md)** - Security improvements and analysis
-- **[MIGRATION_GUIDE.md](MIGRATION_GUIDE.md)** - Migrating from v1.x
+- **[ZONES.md](ZONES.md)** - Zone system and monster guide
 
 ## 🎯 Key Improvements
 
